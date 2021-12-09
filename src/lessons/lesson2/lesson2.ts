@@ -1,4 +1,4 @@
-console.log('lesson 2');
+console.log("lesson 2");
 
 // Lexical environment
 // http://jsflow.org/docs/lex-env/
@@ -19,7 +19,6 @@ console.log('lesson 2');
 // Recursion
 // https://learn.javascript.ru/recursion
 // https://www.youtube.com/watch?v=Kuq6oIN3PH0
-
 
 // Task 01
 // Реализовать функцию sum которая суммирует 2 числа следующим образом sum(3)(6) === 9
@@ -52,6 +51,24 @@ console.log('lesson 2');
 // 6) superSum(3)(2,5)(3,9) //10
 
 // P.S. типизируйте только аргументы, а при вызове функции используйте @ts-ignore
+
+function superSum(num: number) {
+  if (num <= 0) return 0;
+  if (num === 1) return (n: number) => n;
+
+  let _arguments: number[] = [];
+
+  function helper(...args: number[]) {
+    _arguments = [..._arguments, ...args];
+    if (_arguments.length >= num) {
+        _arguments.length = num
+        return _arguments.reduce( (acc, number) => acc + number)
+    } else {
+      return helper;
+    }
+  }
+  return helper;
+}
 
 // Task 05
 // решить все задачи по рекурсии которые даны в конце статьи https://learn.javascript.ru/recursion
